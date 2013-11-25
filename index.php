@@ -18,12 +18,13 @@
      *      You should have received a copy of the GNU Affero General Public
      * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
+
 /*
 Theme Name: bender
 Theme URI: http://osclass.org/
-Description: bender
-Version: 1.0
-Author: Osclass team
+Description: Bender theme
+Version: 1.1.0
+Author: Osclass
 Author URI: http://osclass.org/
 Widgets:
 Theme update URI:
@@ -32,9 +33,9 @@ Theme update URI:
     function bender_theme_info() {
         return array(
              'name'        => 'bender'
-            ,'version'     => '1.0'
-            ,'description' => 'bender'
-            ,'author_name' => 'Osclass Team'
+            ,'version'     => '1.1.0'
+            ,'description' => 'Bender theme'
+            ,'author_name' => 'Osclass'
             ,'author_url'  => 'http://osclass.org'
             ,'locations'   => array()
         );

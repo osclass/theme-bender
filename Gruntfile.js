@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         replace: { },
         watch: {
             template: {
-                files: ['sass/colors.scss.tpl'],
+                files: ['sass/colors.scss.tpl', 'index.php.tpl'],
                 tasks: ['template:blue']
             }
         },
@@ -35,10 +35,14 @@ module.exports = function(grunt) {
 
         grunt.config( 'template.' + key, {
             options: {
-                data: themeObj[key]
+                data: {
+                    theme: themeObj[key],
+                    pkg: pkg
+                }
             },
             files: {
-                'sass/colors.scss': ['sass/colors.scss.tpl']
+                'sass/colors.scss': ['sass/colors.scss.tpl'],
+                'index.php': ['index.php.tpl'],
             }
         });
 
