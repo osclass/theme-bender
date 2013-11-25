@@ -25,28 +25,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        copy: {
-            all: {
-                files: [
-                    {
-                        expand: true,
-                        src: [
-                            'screenshot.png',
-                            '*.php',
-                            'admin/**',
-                            'common/**',
-                            'css/**',
-                            'favicon/**',
-                            'fonts/**',
-                            'images/**',
-                            'js/**',
-                            'languages/**'
-                        ],
-                        dest: 'dist/'
-                    }
-                ]
-            }
-        }
+        copy: { }
     });
 
     var themeObj = grunt.config.get('theme');
@@ -72,13 +51,45 @@ module.exports = function(grunt) {
             }
         });
 
+        grunt.config( 'copy.' + key, {
+            files: [
+                {
+                    expand: true,
+                    src: [
+                        '*.php',
+                        'admin/**',
+                        'common/**',
+                        'css/**',
+                        'favicon/**',
+                        'fonts/**',
+                        'images/**',
+                        'js/**',
+                        'languages/**'
+                    ],
+                    dest: 'dist/' + theme.slug
+                }
+            ]
+        });
+
+        grunt.config( 'copy.screenshoot_' + key, {
+            files: [
+                {
+                    expand: false,
+                    src: [
+                        'screenshot/' + key + '/screenshot.png'
+                    ],
+                    dest: 'dist/' + theme.slug + '/screenshot.png'
+                }
+            ]
+        });
+
         // replace theme strings
         grunt.config( 'replace.'+ key , {
             src: [
-                'dist/*.php',
-                'dist/admin/*.php',
-                'dist/common/*.php',
-                'dist/js/*.js'
+                'dist/' + theme.slug + '/*.php',
+                'dist/' + theme.slug + '/admin/*.php',
+                'dist/' + theme.slug + '/common/*.php',
+                'dist/' + theme.slug + '/js/*.js'
             ],
             overwrite: true,
             replacements: [
@@ -95,13 +106,13 @@ module.exports = function(grunt) {
 
         var archive = '../packages/theme_'+ theme.slug + '_' + pkg.version + '.zip';
         grunt.config( 'shell.compress_'+ key , {
-            command : 'cd dist/; zip -r ' + archive + ' .' + ';',
+            command : 'cd dist/; zip -r ' + archive + ' ' + theme.slug + '/;',
             options: {
                 stdout: false
             }
         });
 
-        grunt.registerTask('dist:' + key, ['template:' + key, 'sass', 'copy:all', 'replace:' + key, 'shell:compress_' + key]);
+        grunt.registerTask('dist:' + key, ['template:' + key, 'sass', 'copy:' + key, 'copy:screenshoot_' + key, 'replace:' + key, 'shell:compress_' + key]);
     }
 
     grunt.registerTask('dist', ['dist:red', 'dist:blue', 'dist:black', 'dist:purple'])
