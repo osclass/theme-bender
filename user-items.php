@@ -67,7 +67,7 @@
         </ul>
     <?php } ?>
     <div class="paginate" >
-        <?php echo osc_search_pagination(); ?>
+        <?php echo osc_pagination_items(); ?>
     </div>
 <?php } ?>
 <?php osc_current_web_theme_path('footer.php') ; ?>
