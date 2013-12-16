@@ -47,6 +47,9 @@
     var bender = window.bender || {};
     bender.base_url = '<?php echo osc_base_url(true); ?>';
     bender.langs = <?php echo json_encode($js_lang); ?>
+    bender.fancybox_prev = '<?php echo osc_esc_js( __('Previous image','bender')) ?>';
+    bender.fancybox_next = '<?php echo osc_esc_js( __('Next image','bender')) ?>';
+    bender.fancybox_closeBtn = '<?php echo osc_esc_js( __('Close','bender')) ?>';
 </script>
 <link href="<?php echo osc_current_web_theme_url('css/main.css') ; ?>?<?php echo rand(0, pow(10, 5)); ?>" rel="stylesheet" type="text/css" />
 <?php osc_run_hook('header') ; ?>
