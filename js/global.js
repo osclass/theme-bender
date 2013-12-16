@@ -198,6 +198,11 @@ $(document).ready(function(event){
                 title : {
                     type : 'inside'
                 }
+            },
+            tpl: {
+                prev: '<a title="'+bender.fancybox_prev+'" class="fancybox-nav fancybox-prev"><span></span></a>',
+                next: '<a title="'+bender.fancybox_next+'" class="fancybox-nav fancybox-next"><span></span></a>',
+                closeBtn : '<a title="'+bender.fancybox_closeBtn+'" class="fancybox-item fancybox-close" href="javascript:;"></a>'
             }
         });
 
