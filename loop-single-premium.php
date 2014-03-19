@@ -17,7 +17,7 @@
                         <span class="location"><?php echo osc_premium_city(); ?> (<?php echo osc_premium_region(); ?>)</span> <span class="g-hide">-</span> <?php echo osc_format_date(osc_premium_pub_date()); ?>
                         <?php if( osc_price_enabled_at_items() ) { ?><span class="currency-value"><?php echo osc_format_price(osc_premium_price()); ?></span><?php } ?>
                     </div>
-                    <p><?php echo osc_highlight( strip_tags( osc_premium_description()) ,250) ; ?></p>
+                    <p><?php echo osc_highlight( osc_premium_description(), 250 ); ?></p>
                 </div>
                 <?php if($admin){ ?>
                     <span class="admin-options">
