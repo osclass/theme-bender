@@ -22,7 +22,6 @@
                 </div>
             </fieldset>
         </form>
-    </p>
     <?php } else { ?>
         <div class="flashmessage flashmessage-warning flashmessage-inline" style="display: block;">
             <p><?php _e('No logo has been uploaded yet', 'bender'); ?></p>
