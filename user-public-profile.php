@@ -74,7 +74,7 @@
     <?php if( osc_user_info() !== '' ) { ?>
     <h2><?php _e('User description', 'bender'); ?></h2>
     <?php } ?>
-    <?php echo osc_user_info(); ?>
+    <?php echo nl2br(osc_user_info()); ?>
     <?php if( osc_count_items() > 0 ) { ?>
     <div class="similar_ads">
         <h2><?php _e('Latest listings', 'bender'); ?></h2>
