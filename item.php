@@ -57,9 +57,11 @@
             <div>
                 <?php if ( osc_item_mod_date() !== '' ) { printf( __('<strong class="update">Modified date:</strong> %1$s', 'bender'), osc_format_date( osc_item_mod_date() ) ); } ?>
             </div>
-            <ul id="item_location">
-                <li><strong><?php _e("Location", 'bender'); ?></strong>: <?php echo implode(', ', $location); ?></li>
-            </ul>
+            <?php if (count($location)>0) { ?>
+                <ul id="item_location">
+                    <li><strong><?php _e("Location", 'bender'); ?></strong>: <?php echo implode(', ', $location); ?></li>
+                </ul>
+            <?php }; ?>
         </div>
         <?php if(osc_is_web_user_logged_in() && osc_logged_user_id()==osc_item_user_id()) { ?>
             <p id="edit_item_view">
