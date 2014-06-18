@@ -52,8 +52,8 @@
                         select: function( event, ui ) {
                             $("#sRegion").attr("value", ui.item.region);
                             log( ui.item ?
-                                "<?php _e('Selected', 'modern'); ?>: " + ui.item.value + " aka " + ui.item.id :
-                                "<?php _e('Nothing selected, input was', 'modern'); ?> " + this.value );
+                                "<?php _e('Selected', 'bender'); ?>: " + ui.item.value + " aka " + ui.item.id :
+                                "<?php _e('Nothing selected, input was', 'bender'); ?> " + this.value );
                         }
                     });
                 });
