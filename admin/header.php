@@ -11,7 +11,7 @@
 <?php if( is_writable( osc_uploads_path()) ) { ?>
     <?php if($logo_prefence) { ?>
         <h3 class="render-title"><?php _e('Preview', 'bender') ?></h3>
-        <img border="0" alt="<?php echo osc_esc_html( osc_page_title() ); ?>" src="<?php echo bender_logo_url();?>" />
+        <img border="0" alt="<?php echo osc_esc_html( osc_page_title() ); ?>" src="<?php echo bender_logo_url().'?'.filemtime(osc_uploads_path() . osc_get_preference('logo','bender_theme'));?>" />
         <form action="<?php echo osc_admin_render_theme_url('oc-content/themes/bender/admin/header.php');?>" method="post" enctype="multipart/form-data" class="nocsrf">
             <input type="hidden" name="action_specific" value="remove" />
             <fieldset>
