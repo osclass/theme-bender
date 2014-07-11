@@ -151,7 +151,7 @@ FUNCTIONS
         function logo_header() {
              $logo = osc_get_preference('logo','bender_theme');
              $html = '<a href="'.osc_base_url().'"><img border="0" alt="' . osc_page_title() . '" src="' . bender_logo_url() . '"></a>';
-             if( file_exists( osc_uploads_path() . $logo ) ) {
+             if( $logo!='' && file_exists( osc_uploads_path() . $logo ) ) {
                 return $html;
              } else {
                 return '<a href="'.osc_base_url().'">'.osc_page_title().'</a>';
