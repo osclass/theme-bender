@@ -28,12 +28,11 @@
         </div>
     <?php } ?>
     <h2 class="render-title separate-top"><?php _e('Upload logo', 'bender') ?></h2>
-    <p>
-        <?php _e('The preferred size of the logo is 600x100.', 'bender'); ?>
-        <?php if( $logo_prefence ) { ?>
-        <div class="flashmessage flashmessage-inline flashmessage-warning"><?php _e('<strong>Note:</strong> Uploading another logo will overwrite the current logo.', 'bender'); ?></div>
-        <?php } ?>
-    </p>
+    <p><?php _e('The preferred size of the logo is 600x100.', 'bender'); ?></p>
+    <?php if( $logo_prefence ) { ?>
+    <div class="flashmessage flashmessage-inline flashmessage-warning"><p><?php _e('<strong>Note:</strong> Uploading another logo will overwrite the current logo.', 'bender'); ?></p></div>
+    <?php } ?>
+    <br/><br/>
     <form action="<?php echo osc_admin_render_theme_url('oc-content/themes/bender/admin/header.php'); ?>" method="post" enctype="multipart/form-data" class="nocsrf">
         <input type="hidden" name="action_specific" value="upload_logo" />
         <fieldset>
