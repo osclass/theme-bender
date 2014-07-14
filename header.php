@@ -77,6 +77,7 @@
     </form>
     <?php } ?>
 </div>
+<?php osc_show_widgets('header'); ?>
 <div class="wrapper wrapper-flash">
     <?php
         $breadcrumb = osc_breadcrumb('&raquo;', false, get_breadcrumb_lang());

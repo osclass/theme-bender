@@ -26,7 +26,7 @@ Description: Bender theme
 Version: 1.1.0
 Author: Osclass
 Author URI: http://osclass.org/
-Widgets:
+Widgets: header, footer
 Theme update URI:
 */
 

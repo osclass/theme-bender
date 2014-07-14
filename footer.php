@@ -25,6 +25,7 @@
 <div id="responsive-trigger"></div>
 <!-- footer -->
 <div class="clear"></div>
+<?php osc_show_widgets('footer');?>
 <div id="footer">
     <div class="wrapper">
         <ul class="resp-toogle">
