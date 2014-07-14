@@ -102,13 +102,17 @@ function selectUi(thatSelect){
 }
 $(document).ready(function(event){
     //OK
-    $('.r-list h1 a').click(function(){
+    $('.r-list h1 span').click(function(){
         if(bender.responsive()){
-            var $parent = $(this).parent().parent();
+            var $parent     = $(this).parent().parent();
             if($parent.hasClass('active')){
                 $parent.removeClass('active');
+                $(this).find('i').removeClass('fa-caret-down');
+                $(this).find('i').addClass('fa-caret-right');
             } else {
                 $parent.addClass('active');
+                $(this).find('i').removeClass('fa-caret-right');
+                $(this).find('i').addClass('fa-caret-down');
             }
             return false;
         }
