@@ -20,7 +20,11 @@
      */
 
     // meta tag robots
-    osc_add_hook('header','bender_follow_construct');
+    if( osc_item_is_spam() || osc_premium_is_spam() ) {
+        osc_add_hook('header','bender_nofollow_construct');
+    } else {
+        osc_add_hook('header','bender_follow_construct');
+    }
 
     osc_enqueue_script('fancybox');
     osc_enqueue_style('fancybox', osc_current_web_theme_url('js/fancybox/jquery.fancybox.css'));
