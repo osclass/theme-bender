@@ -104,6 +104,10 @@ module.exports = function(grunt) {
                 {
                     from: 'BENDER_THEME_VERSION',
                     to: theme.slug.toUpperCase() + '_THEME_VERSION'
+                },
+                {
+                    from: 'BENDER_THEME_MARKET_SLUG',
+                    to: theme.slug
                 }
             ]
         });
