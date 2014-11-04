@@ -488,6 +488,12 @@ FUNCTIONS
                 osc_set_preference('defaultShowAs@all', Params::getParam('defaultShowAs@all'), 'bender_theme');
                 osc_set_preference('defaultShowAs@search', Params::getParam('defaultShowAs@all'));
 
+                osc_set_preference('header-728x90',         trim(Params::getParam('header-728x90', false, false, false)),                  'bender');
+                osc_set_preference('homepage-728x90',       trim(Params::getParam('homepage-728x90', false, false, false)),                'bender');
+                osc_set_preference('sidebar-300x250',       trim(Params::getParam('sidebar-300x250', false, false, false)),                'bender');
+                osc_set_preference('search-results-top-728x90',     trim(Params::getParam('search-results-top-728x90', false, false, false)),          'bender');
+                osc_set_preference('search-results-middle-728x90',  trim(Params::getParam('search-results-middle-728x90', false, false, false)),       'bender');
+
                 osc_add_flash_ok_message(__('Theme settings updated correctly', 'bender'), 'admin');
                 osc_redirect_to(osc_admin_render_theme_url('oc-content/themes/bender/admin/settings.php'));
             break;
@@ -687,4 +693,30 @@ if( !function_exists('osc_uploads_url') ){
         return osc_base_url().'oc-content/uploads/'.$item;
     }
 }
+
+/*
+
+    ads  SEARCH
+
+ */
+function search_ads_listing_top_fn() {
+    if(osc_get_preference('search-results-top-728x90', 'bender')!='') {
+        echo '<div class="clear"></div>' . PHP_EOL;
+        echo '<div class="ads_728">' . PHP_EOL;
+        echo osc_get_preference('search-results-top-728x90', 'bender');
+        echo '</div>' . PHP_EOL;
+    }
+}
+//osc_add_hook('search_ads_listing_top', 'search_ads_listing_top_fn');
+
+function search_ads_listing_medium_fn() {
+    if(osc_get_preference('search-results-middle-728x90', 'bender')!='') {
+        echo '<div class="clear"></div>' . PHP_EOL;
+        echo '<div class="ads_728">' . PHP_EOL;
+        echo osc_get_preference('search-results-middle-728x90', 'bender');
+        echo '</div>' . PHP_EOL;
+    }
+}
+osc_add_hook('search_ads_listing_medium', 'search_ads_listing_medium_fn');
+
 ?>

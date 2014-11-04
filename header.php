@@ -26,6 +26,12 @@
     </head>
 <body <?php bender_body_class(); ?>>
 <div id="header">
+    <!-- header ad 728x60-->
+    <div class="ads_header">
+    <?php echo osc_get_preference('header-728x90', 'bender'); ?>
+    <!-- /header ad 728x60-->
+    </div>
+    <div class="clear"></div>
     <div class="wrapper">
         <div id="logo">
             <?php echo logo_header(); ?>
@@ -54,6 +60,7 @@
             <li class="publish"><a href="<?php echo osc_item_post_url_in_category() ; ?>"><?php _e("Publish your ad for free", 'bender');?></a></li>
             <?php } ?>
         </ul>
+
     </div>
     <?php if( osc_is_home_page() || osc_is_static_page() || osc_is_contact_page() ) { ?>
     <form action="<?php echo osc_base_url(true); ?>" method="get" class="search nocsrf" <?php /* onsubmit="javascript:return doSearch();"*/ ?>>

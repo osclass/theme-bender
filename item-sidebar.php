@@ -36,6 +36,15 @@
             </select>
         </form>
     <?php } ?>
+
+    <?php if( osc_get_preference('sidebar-300x250', 'bender') != '') {?>
+    <!-- sidebar ad 350x250 -->
+    <div class="ads_300">
+        <?php echo osc_get_preference('sidebar-300x250', 'bender'); ?>
+    </div>
+    <!-- /sidebar ad 350x250 -->
+    <?php } ?>
+
     <div id="contact" class="widget-box form-container form-vertical">
         <h2><?php _e("Contact publisher", 'bender'); ?></h2>
         <?php if( osc_item_is_expired () ) { ?>
