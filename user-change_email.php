@@ -73,7 +73,7 @@
             },
             messages: {
                 new_email: {
-                    required: '?php echo osc_esc_js(__("Email: this field is required", "bender")); ?>.',
+                    required: '<?php echo osc_esc_js(__("Email: this field is required", "bender")); ?>.',
                     email: '<?php echo osc_esc_js(__("Invalid email address", "bender")); ?>.'
                 }
             },
