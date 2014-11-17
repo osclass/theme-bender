@@ -122,6 +122,7 @@
             View::newInstance()->_exportVariableToView("listType", 'premiums');
             View::newInstance()->_exportVariableToView("listClass",$listClass.' premium-list');
             osc_current_web_theme_path('loop.php');
+            echo '<div style="clear:both;"></div><br/>';
             }
         ?>
      <?php if(osc_count_items() > 0) {
