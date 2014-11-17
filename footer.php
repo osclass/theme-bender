@@ -28,7 +28,7 @@
 <?php osc_show_widgets('footer');?>
 <div id="footer">
     <div class="wrapper">
-        <ul class="resp-toogle">
+        <ul class="resp-toggle">
             <?php if( osc_users_enabled() ) { ?>
             <?php if( osc_is_web_user_logged_in() ) { ?>
                 <li>
