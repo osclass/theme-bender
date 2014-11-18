@@ -42,7 +42,7 @@ module.exports = function(grunt) {
             },
             files: {
                 'sass/colors.scss': ['sass/colors.scss.tpl'],
-                'index.php': ['index.php.tpl'],
+                'index.php': ['index.php.tpl']
             }
         });
 

@@ -23,17 +23,17 @@
 Theme Name: bender
 Theme URI: http://osclass.org/
 Description: Bender theme
-Version: 3.0.0
+Version: 3.0.1
 Author: Osclass
 Author URI: http://osclass.org/
 Widgets:  header, footer
-Theme update URI: BENDER_THEME_MARKET_SLUG
+Theme update URI: bender
 */
 
     function bender_theme_info() {
         return array(
              'name'        => 'bender'
-            ,'version'     => '3.0.0'
+            ,'version'     => '3.0.1'
             ,'description' => 'Bender theme'
             ,'author_name' => 'Osclass'
             ,'author_url'  => 'http://osclass.org'
