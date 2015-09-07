@@ -24,9 +24,9 @@
 DEFINES
 
 */
-    define('BENDER_THEME_VERSION', '1.0.1');
-    if( !osc_get_preference('keyword_placeholder', 'bender_theme') ) {
-        osc_set_preference('keyword_placeholder', __('ie. PHP Programmer', 'bender'), 'bender_theme');
+    define('BENDER_THEME_VERSION', '310');
+    if( (string)osc_get_preference('keyword_placeholder', 'bender')=="" ) {
+        Params::setParam('keyword_placeholder', __('ie. PHP Programmer', 'bender') ) ;
     }
     osc_register_script('fancybox', osc_current_web_theme_url('js/fancybox/jquery.fancybox.pack.js'), array('jquery'));
     osc_enqueue_style('fancybox', osc_current_web_theme_url('js/fancybox/jquery.fancybox.css'));
@@ -51,22 +51,23 @@ FUNCTIONS
     // install options
     if( !function_exists('bender_theme_install') ) {
         function bender_theme_install() {
-            osc_set_preference('keyword_placeholder', Params::getParam('keyword_placeholder'), 'bender_theme');
-            osc_set_preference('version', BENDER_THEME_VERSION, 'bender_theme');
-            osc_set_preference('footer_link', '1', 'bender_theme');
-            osc_set_preference('donation', '0', 'bender_theme');
-            osc_set_preference('defaultShowAs@all', 'list', 'bender_theme');
+            osc_set_preference('keyword_placeholder', Params::getParam('keyword_placeholder'), 'bender');
+            osc_set_preference('version', BENDER_THEME_VERSION, 'bender');
+            osc_set_preference('footer_link', '1', 'bender');
+            osc_set_preference('donation', '0', 'bender');
+            osc_set_preference('defaultShowAs@all', 'list', 'bender');
             osc_set_preference('defaultShowAs@search', 'list');
+            osc_set_preference('defaultLocationShowAs', 'dropdown', 'bender'); // dropdown / autocomplete
             osc_reset_preferences();
         }
     }
     // update options
     if( !function_exists('bender_theme_update') ) {
-        function bender_theme_update() {
-            //osc_set_preference('version', BENDER_THEME_VERSION, 'bender_theme');
-            osc_delete_preference('default_logo', 'bender_theme');
+        function bender_theme_update($current_version) {
 
-            $logo_prefence = osc_get_preference('logo', 'bender_theme');
+            osc_delete_preference('default_logo', 'bender');
+
+            $logo_prefence = osc_get_preference('logo', 'bender');
             $logo_name     = 'bender_logo';
             $temp_name     = WebThemes::newInstance()->getCurrentThemePath() . 'images/logo.jpg';
             if( file_exists( $temp_name ) && !$logo_prefence) {
@@ -75,20 +76,26 @@ FUNCTIONS
                 $ext = $img->getExt();
                 $logo_name .= '.'.$ext;
                 $img->saveToFile(osc_uploads_path().$logo_name);
-                @unlink($temp_name);
-                osc_set_preference('logo', $logo_name, 'bender_theme');
+                osc_set_preference('logo', $logo_name, 'bender');
+            }
+            osc_set_preference('version', '301', 'bender');
+
+            if($current_version<310 || $current_version=='3.0.1') {
+                // add preferences
+                osc_set_preference('defaultLocationShowAs', 'dropdown', 'bender');
+                osc_set_preference('version', '310', 'bender');
             }
             osc_reset_preferences();
         }
     }
     if(!function_exists('check_install_bender_theme')) {
         function check_install_bender_theme() {
-            $current_version = osc_get_preference('version', 'bender_theme');
+            $current_version = osc_get_preference('version', 'bender');
             //check if current version is installed or need an update<
-            if( !$current_version ) {
-                bender_theme_install();
+            if( $current_version=='' ) {
+                bender_theme_update(0);
             } else if($current_version < BENDER_THEME_VERSION){
-                bender_theme_update();
+                bender_theme_update($current_version);
             }
         }
     }
@@ -151,7 +158,7 @@ FUNCTIONS
     /* logo */
     if( !function_exists('logo_header') ) {
         function logo_header() {
-             $logo = osc_get_preference('logo','bender_theme');
+             $logo = osc_get_preference('logo','bender');
              $html = '<a href="'.osc_base_url().'"><img border="0" alt="' . osc_page_title() . '" src="' . bender_logo_url() . '"></a>';
              if( $logo!='' && file_exists( osc_uploads_path() . $logo ) ) {
                 return $html;
@@ -163,7 +170,7 @@ FUNCTIONS
     /* logo */
     if( !function_exists('bender_logo_url') ) {
         function bender_logo_url() {
-            $logo = osc_get_preference('logo','bender_theme');
+            $logo = osc_get_preference('logo','bender');
             if( $logo ) {
                 return osc_uploads_url($logo);
             }
@@ -193,7 +200,12 @@ FUNCTIONS
     }
     if( !function_exists('bender_default_show_as') ){
         function bender_default_show_as(){
-            return getPreference('defaultShowAs@all','bender_theme');
+            return getPreference('defaultShowAs@all','bender');
+        }
+    }
+    if( !function_exists('bender_default_location_show_as') ){
+        function bender_default_location_show_as(){
+            return osc_get_preference('defaultLocationShowAs','bender');
         }
     }
     if( !function_exists('bender_draw_categories_list') ) {
@@ -478,7 +490,7 @@ FUNCTIONS
         //if(OC_ADMIN)
         if( Params::getParam('file') == 'oc-content/themes/bender/admin/settings.php' ) {
             if( Params::getParam('donation') == 'successful' ) {
-                osc_set_preference('donation', '1', 'bender_theme');
+                osc_set_preference('donation', '1', 'bender');
                 osc_reset_preferences();
             }
         }
@@ -487,10 +499,12 @@ FUNCTIONS
             case('settings'):
                 $footerLink  = Params::getParam('footer_link');
 
-                osc_set_preference('keyword_placeholder', Params::getParam('keyword_placeholder'), 'bender_theme');
-                osc_set_preference('footer_link', ($footerLink ? '1' : '0'), 'bender_theme');
-                osc_set_preference('defaultShowAs@all', Params::getParam('defaultShowAs@all'), 'bender_theme');
+                osc_set_preference('keyword_placeholder', Params::getParam('keyword_placeholder'), 'bender');
+                osc_set_preference('footer_link', ($footerLink ? '1' : '0'), 'bender');
+                osc_set_preference('defaultShowAs@all', Params::getParam('defaultShowAs@all'), 'bender');
                 osc_set_preference('defaultShowAs@search', Params::getParam('defaultShowAs@all'));
+
+                osc_set_preference('defaultLocationShowAs', Params::getParam('defaultLocationShowAs'), 'bender');
 
                 osc_set_preference('header-728x90',         trim(Params::getParam('header-728x90', false, false, false)),                  'bender');
                 osc_set_preference('homepage-728x90',       trim(Params::getParam('homepage-728x90', false, false, false)),                'bender');
@@ -511,7 +525,7 @@ FUNCTIONS
                     $path = osc_uploads_path() . $logo_name ;
                     $img->saveToFile($path);
 
-                    osc_set_preference('logo', $logo_name, 'bender_theme');
+                    osc_set_preference('logo', $logo_name, 'bender');
 
                     osc_add_flash_ok_message(__('The logo image has been uploaded correctly', 'bender'), 'admin');
                 } else {
@@ -520,11 +534,11 @@ FUNCTIONS
                 osc_redirect_to(osc_admin_render_theme_url('oc-content/themes/bender/admin/header.php'));
             break;
             case('remove'):
-                $logo = osc_get_preference('logo','bender_theme');
+                $logo = osc_get_preference('logo','bender');
                 $path = osc_uploads_path() . $logo ;
                 if(file_exists( $path ) ) {
                     @unlink( $path );
-                    osc_delete_preference('logo','bender_theme');
+                    osc_delete_preference('logo','bender');
                     osc_reset_preferences();
                     osc_add_flash_ok_message(__('The logo image has been removed', 'bender'), 'admin');
                 } else {

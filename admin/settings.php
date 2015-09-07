@@ -22,7 +22,7 @@
 
 <?php if ( (!defined('ABS_PATH')) ) exit('ABS_PATH is not loaded. Direct access is not allowed.'); ?>
 <?php if ( !OC_ADMIN ) exit('User access is not allowed.'); ?>
-<?php if( !osc_get_preference('footer_link', 'bender_theme') && !osc_get_preference('donation', 'bender_theme') ) { ?>
+<?php if( !defined('MULTISITE') && !osc_get_preference('footer_link', 'bender') && !osc_get_preference('donation', 'bender') ) { ?>
 <form name="_xclick" action="https://www.paypal.com/in/cgi-bin/webscr" method="post" class="nocsrf">
     <input type="hidden" name="cmd" value="_donations">
     <input type="hidden" name="rm" value="2">
@@ -43,14 +43,14 @@
     </div>
 </form>
 <?php } ?>
-<h2 class="render-title <?php echo (osc_get_preference('footer_link', 'bender_theme') ? '' : 'separate-top'); ?>"><?php _e('Theme settings', 'bender'); ?></h2>
+<h2 class="render-title <?php echo (osc_get_preference('footer_link', 'bender') ? '' : 'separate-top'); ?>"><?php _e('Theme settings', 'bender'); ?></h2>
 <form action="<?php echo osc_admin_render_theme_url('oc-content/themes/bender/admin/settings.php'); ?>" method="post" class="nocsrf">
     <input type="hidden" name="action_specific" value="settings" />
     <fieldset>
         <div class="form-horizontal">
             <div class="form-row">
                 <div class="form-label"><?php _e('Search placeholder', 'bender'); ?></div>
-                <div class="form-controls"><input type="text" class="xlarge" name="keyword_placeholder" value="<?php echo osc_esc_html( osc_get_preference('keyword_placeholder', 'bender_theme') ); ?>"></div>
+                <div class="form-controls"><input type="text" class="xlarge" name="keyword_placeholder" value="<?php echo osc_esc_html( osc_get_preference('keyword_placeholder', 'bender') ); ?>"></div>
             </div>
             <div class="form-row">
                 <div class="form-label"><?php _e('Show lists as:', 'bender'); ?></div>
@@ -61,11 +61,28 @@
                     </select>
                 </div>
             </div>
+            <?php if(!defined('MULTISITE')) { ?>
             <div class="form-row">
                 <div class="form-label"><?php _e('Footer link', 'bender'); ?></div>
                 <div class="form-controls">
-                    <div class="form-label-checkbox"><input type="checkbox" name="footer_link" value="1" <?php echo (osc_get_preference('footer_link', 'bender_theme') ? 'checked' : ''); ?> > <?php _e('I want to help Osclass by linking to <a href="http://osclass.org/" target="_blank">osclass.org</a> from my site with the following text:', 'bender'); ?></div>
+                    <div class="form-label-checkbox"><input type="checkbox" name="footer_link" value="1" <?php echo (osc_get_preference('footer_link', 'bender') ? 'checked' : ''); ?> > <?php _e('I want to help Osclass by linking to <a href="http://osclass.org/" target="_blank">osclass.org</a> from my site with the following text:', 'bender'); ?></div>
                     <span class="help-box"><?php _e('This website is proudly using the <a title="Osclass web" href="http://osclass.org/">classifieds scripts</a> software <strong>Osclass</strong>', 'bender'); ?></span>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+    </fieldset>
+
+    <h2 class="render-title"><?php _e('Location input', 'bender'); ?></h2>
+    <fieldset>
+        <div class="form-horizontal">
+            <div class="form-row">
+                <div class="form-label"><?php _e('Show location input as:', 'bender'); ?></div>
+                <div class="form-controls">
+                    <select name="defaultLocationShowAs">
+                        <option value="dropdown" <?php if(bender_default_location_show_as() == 'dropdown'){ echo 'selected="selected"' ; } ?>><?php _e('Dropdown','bender'); ?></option>
+                        <option value="autocomplete" <?php if(bender_default_location_show_as() == 'autocomplete'){ echo 'selected="selected"' ; } ?>><?php _e('Autocomplete','bender'); ?></option>
+                    </select>
                 </div>
             </div>
         </div>

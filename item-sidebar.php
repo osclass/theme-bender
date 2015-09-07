@@ -116,7 +116,10 @@
                                 custom_theme_widget: 'recaptcha_widget'
                             };
                         </script>
-                        <style type="text/css"> div#recaptcha_widget, div#recaptcha_image > img { width:280px; } </style>
+                        <style type="text/css">
+                          div#recaptcha_widget, div#recaptcha_image > img { width:240px; margin-top: 5px; }
+                          div#recaptcha_image { margin-bottom: 15px; }
+                        </style>
                         <div id="recaptcha_widget">
                             <div id="recaptcha_image"><img /></div>
                             <span class="recaptcha_only_if_image"><?php _e('Enter the words above','bender'); ?>:</span>
