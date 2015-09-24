@@ -64,7 +64,9 @@ FUNCTIONS
     // update options
     if( !function_exists('bender_theme_update') ) {
         function bender_theme_update($current_version) {
-
+            if($current_version==0) {
+                bender_theme_install();
+            }
             osc_delete_preference('default_logo', 'bender');
 
             $logo_prefence = osc_get_preference('logo', 'bender');
@@ -706,9 +708,13 @@ class benderBodyClass
 HELPERS
 
 */
-if( !function_exists('osc_uploads_url') ){
-    function osc_uploads_url($item = ''){
-        return osc_base_url().'oc-content/uploads/'.$item;
+if( !function_exists('osc_uploads_url')) {
+    function osc_uploads_url($item = '') {
+        $logo = osc_get_preference('logo', 'bender');
+        if ($logo != '' && file_exists(osc_uploads_path() . $logo)) {
+            $path = str_replace(ABS_PATH, '', osc_uploads_path() . '/');
+            return osc_base_url() . $path . $item;
+        }
     }
 }
 
