@@ -87,6 +87,7 @@ FUNCTIONS
                 osc_set_preference('defaultLocationShowAs', 'dropdown', 'bender');
                 osc_set_preference('version', '313', 'bender');
             }
+            osc_set_preference('version', '313', 'bender');
             osc_reset_preferences();
         }
     }
