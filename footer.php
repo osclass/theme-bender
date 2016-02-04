@@ -65,8 +65,7 @@
                 <a href="<?php echo osc_contact_url(); ?>"><?php _e('Contact', 'bender'); ?></a>
             </li>
         </ul>
-        <?php
-        if( osc_get_preference('footer_link', 'bender_theme') !== '0') {
+        <?php if( (!defined('MULTISITE') || MULTISITE==0) && osc_get_preference('footer_link', 'bender') !== '0') {
             echo '<div>' . sprintf(__('This website is proudly using the <a title="Osclass web" href="%s">classifieds scripts</a> software <strong>Osclass</strong>'), 'http://osclass.org/') . '</div>';
         }
         ?>

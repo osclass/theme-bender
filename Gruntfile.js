@@ -123,7 +123,7 @@ module.exports = function(grunt) {
         grunt.registerTask('dist:' + key, ['template:' + key, 'sass', 'copy:' + key, 'copy:screenshoot_' + key, 'replace:' + key, 'shell:compress_' + key]);
     }
 
-    grunt.registerTask('dist', ['dist:red', 'dist:blue', 'dist:black', 'dist:purple'])
+    grunt.registerTask('dist', ['dist:red', 'dist:black', 'dist:purple', 'dist:blue'])
 
     // Actually load this plugin's task(s).
     grunt.loadTasks('tasks');
