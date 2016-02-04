@@ -24,7 +24,7 @@
 DEFINES
 
 */
-    define('BENDER_THEME_VERSION', '313');
+    define('BENDER_THEME_VERSION', '314');
     if( (string)osc_get_preference('keyword_placeholder', 'bender')=="" ) {
         Params::setParam('keyword_placeholder', __('ie. PHP Programmer', 'bender') ) ;
     }
@@ -87,7 +87,7 @@ FUNCTIONS
                 osc_set_preference('defaultLocationShowAs', 'dropdown', 'bender');
                 osc_set_preference('version', '313', 'bender');
             }
-            osc_set_preference('version', '313', 'bender');
+            osc_set_preference('version', '314', 'bender');
             osc_reset_preferences();
         }
     }
