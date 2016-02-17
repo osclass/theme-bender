@@ -50,7 +50,6 @@
                         <span>|</span>
                         <a href="<?php echo osc_item_activate_url();?>" ><?php _e('Activate', 'bender'); ?></a>
                         <?php } ?>
-                        <?php if(function_exists("republish_pro_link")) { republish_pro_link(osc_item_id()); } ?>
                     </span>
                 <?php } ?>
             </div>
