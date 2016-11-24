@@ -99,9 +99,17 @@
                                 <div class="controls">
                                     <?php
                                     if (bender_default_location_show_as() == 'dropdown') {
-                                        ItemForm::region_select(osc_get_regions(osc_user_field('fk_c_country_code')), osc_user());
+                                        if($edit) {
+                                            ItemForm::region_select(osc_get_regions(osc_item_country_code()), osc_item());
+                                        } else {
+                                            ItemForm::region_select(osc_get_regions(osc_user_field('fk_c_country_code')), osc_user());
+                                        }
                                     } else {
-                                        ItemForm::region_text(osc_user());
+                                        if($edit) {
+                                            ItemForm::region_text(osc_item());
+                                        } else {
+                                            ItemForm::region_text(osc_user());
+                                        }
                                     }
                                     ?>
                                 </div>
@@ -117,9 +125,17 @@
                                 <div class="controls">
                                   <?php
                                     if (bender_default_location_show_as() == 'dropdown') {
-                                        ItemForm::region_select($aRegions, osc_user());
+                                        if($edit) {
+                                            ItemForm::region_select($aRegions, osc_item());
+                                        } else {
+                                            ItemForm::region_select($aRegions, osc_user());
+                                        }
                                     } else {
-                                        ItemForm::region_text(osc_user());
+                                        if($edit) {
+                                            ItemForm::region_text(osc_item());
+                                        } else {
+                                            ItemForm::region_text(osc_user());
+                                        }
                                     }
                                     ?>
                                 </div>
@@ -131,7 +147,7 @@
                                 <div class="controls">
                                     <?php
                                     if (bender_default_location_show_as() == 'dropdown') {
-                                        if(Params::getParam('action') != 'item_edit') {
+                                        if($edit) {
                                             ItemForm::city_select(null, osc_item());
                                         } else { // add new item
                                             ItemForm::city_select(osc_get_cities(osc_user_region_id()), osc_user());
