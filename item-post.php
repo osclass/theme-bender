@@ -229,6 +229,11 @@
                 $('.control-group-price').show();
             });
 
+            <?php if ($edit && !osc_item_category_price_enabled(osc_item_category_id())) { ?>
+                $('#price').trigger('hide-price');
+            <?php } ?>
+
+
     <?php if(osc_locale_thousands_sep()!='' || osc_locale_dec_point() != '') { ?>
     $().ready(function(){
         $("#price").blur(function(event) {
