@@ -116,10 +116,15 @@
                             </div>
                             <?php
                             } else {
+                                $aRegions = array();
+                                $_countryCode = '';
                                 $aCountries = osc_get_countries();
-                                $aRegions = osc_get_regions($aCountries[0]['pk_c_code']);
+                                if(count($aCountries)>0) {
+                                    $_countryCode = $aCountries[0]['pk_c_code'];
+                                    $aRegions = osc_get_regions($_countryCode);
+                                }
                                 ?>
-                            <input type="hidden" id="countryId" name="countryId" value="<?php echo osc_esc_html($aCountries[0]['pk_c_code']); ?>"/>
+                            <input type="hidden" id="countryId" name="countryId" value="<?php echo osc_esc_html($_countryCode); ?>"/>
                             <div class="control-group">
                                 <label class="control-label" for="region"><?php _e('Region', 'bender'); ?></label>
                                 <div class="controls">
