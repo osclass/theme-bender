@@ -37,6 +37,9 @@
     }
 
     $location = array();
+    if( osc_item_address() !== '' ) {
+        $location[] = osc_item_address();
+    }
     if( osc_item_city_area() !== '' ) {
         $location[] = osc_item_city_area();
     }
